@@ -1,0 +1,43 @@
+schema { query: Query, mutation: Mutation }
+
+type Query {
+  me: User!
+  satelliteInfo(id: ID!): Satellite
+}
+
+type Mutation {
+  launchCubeSat(designation: String!): Satellite!
+  establishRelayConnection(sourceSatId: ID!, targetSatId: ID!): Satellite!
+  
+  """
+  [DEPRECATED] Request clearance upgrades via secure portal, not API.
+  """
+  requestClearanceUpgrade(level: String!): String @deprecated
+}
+
+type User {
+  id: ID!
+  username: String!
+  accountTier: String!
+  relaySlots: Int!
+  mySatellites: [Satellite!]!
+}
+
+type Satellite {
+  id: ID!
+  designation: String!
+  classification: String!
+  
+  """
+  SECURITY MODEL: You can access telemetryData if:
+  1. You are the registered owner of this satellite, OR
+  2. You own a satellite that is currently relaying with this one.
+  """
+  telemetryData: [TelemetryPacket!]!
+  relayConnections: [Satellite!]!
+}
+
+type TelemetryPacket {
+  sensorType: String!
+  rawData: String!
+}

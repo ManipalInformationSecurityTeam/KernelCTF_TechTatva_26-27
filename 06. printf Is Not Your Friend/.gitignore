@@ -1,0 +1,21 @@
+# Compiler object files and local binaries
+challenge/logger
+*.o
+*.out
+
+# Core dumps and debug artifacts
+core
+core.*
+.gdb_historyls
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+
+# Editor and OS swap / backup files
+*.swp
+*~
+.DS_Store

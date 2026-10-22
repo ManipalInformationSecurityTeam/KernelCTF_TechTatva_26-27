@@ -1,0 +1,16 @@
+{
+  "name": "astraeus-civilian-portal",
+  "version": "2.0.0",
+  "description": "Astraeus Aerospace API - University Partnership Program",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "apollo-server-express": "^3.13.0",
+    "apollo-server-core": "^3.13.0",
+    "express": "^4.19.2",
+    "graphql": "^16.8.1",
+    "cors": "^2.8.5"
+  }
+}

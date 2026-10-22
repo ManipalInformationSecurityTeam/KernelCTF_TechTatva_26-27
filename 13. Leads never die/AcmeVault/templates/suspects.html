@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}CASE DATABASE // ACME{% endblock %}
+{% block content %}
+<div class="eyebrow">CASE DATABASE / VERRAN HOMICIDE</div>
+<div class="hero-row">
+    <div>
+        <h1 class="page-title">SIX SUSPECT FILES</h1>
+        <p class="muted">Dr. Elias Verran // Archive Room 4B // estimated time of death 23:41</p>
+    </div>
+    <div class="evidence-tag">FOLLOW THE EVIDENCE</div>
+</div>
+
+<div class="case-grid">
+    {% for case_id, case in cases.items() %}
+    <a class="case-card" href="{{ url_for('suspect', case_id=case_id) }}">
+        <div class="case-number">{{ case_id }}</div>
+        <div class="case-subject">{{ case.subject }}</div>
+        <div class="case-role">{{ case.role }}</div>
+        <div class="case-meta">
+            <span>FILE {{ "%02d" % loop.index }}</span>
+            <span>{{ case.classification }}</span>
+        </div>
+        <div class="case-open">OPEN DOSSIER →</div>
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}

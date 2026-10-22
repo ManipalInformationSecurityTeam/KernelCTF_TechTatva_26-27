@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}DASHBOARD // ACME{% endblock %}
+{% block content %}
+<div class="eyebrow">INTERNAL / INVESTIGATOR DASHBOARD</div>
+<div class="hero-row">
+    <div>
+        <h1 class="page-title">WELCOME, {{ claims.sub }}</h1>
+        <p class="case-subtitle">MURDER OF DR. ELIAS VERRAN // ARCHIVE ROOM 4B // 23:41</p>
+    </div>
+    <div class="identity-chip">CREDENTIALS VERIFIED</div>
+</div>
+
+<section class="warning-banner">
+    <div class="warning-mark">!</div>
+    <div>
+        <div class="warning-title">YOUR CREDENTIALS ARE LEGITIMATE. YOUR ACCESS IS NOT.</div>
+        <div class="warning-text">The archive only shows what this session is allowed to see.</div>
+    </div>
+</section>
+
+<div class="grid two">
+    <section class="panel">
+        <div class="panel-head">INVESTIGATOR PROFILE</div>
+        <div class="stat"><span>INVESTIGATOR</span><strong>{{ claims.sub }}</strong></div>
+        <div class="stat"><span>ROLE</span><strong>{{ claims.role|upper }}</strong></div>
+        <div class="stat"><span>CLEARANCE</span><strong>LEVEL {{ claims.clearance }}</strong></div>
+        <div class="stat"><span>SESSION</span><strong>VERIFIED</strong></div>
+    </section>
+    <section class="panel">
+        <div class="panel-head">CASE BRIEF</div>
+        <div class="stat"><span>VICTIM</span><strong>{{ victim_name }}</strong></div>
+        <div class="stat"><span>LOCATION</span><strong>ARCHIVE ROOM 4B</strong></div>
+        <div class="stat"><span>EST. TIME</span><strong>23:41</strong></div>
+        <div class="stat"><span>FILES IN DATABASE</span><strong>{{ total_cases }}</strong></div>
+    </section>
+</div>
+
+<section class="panel briefing-panel">
+    <div class="panel-head">CASE STATUS / LEAD INVESTIGATOR NOTE</div>
+    <p class="briefing-text">Verran's death was ruled a targeted homicide. I know how you work: you will unpeel every statement, retrace every movement, and test every neat little conclusion I left behind. I did the same while I was alive. Start with the obvious story, then ask what the archive chose not to tell you. A clean record is not always a complete record.</p>
+    <div class="note-signoff">— E. Verran / field notebook, recovered from Archive Room 4B</div>
+    <div class="system-row">
+        <span>IDENTITY GATEWAY</span><strong>ONLINE</strong>
+        <span>RECORDS ARCHIVE</span><strong>ONLINE</strong>
+    </div>
+</section>
+
+<a class="big-link" href="{{ url_for('suspects') }}">
+    <span>OPEN SUSPECT DATABASE // {{ total_cases }} FILES</span><span>→</span>
+</a>
+{% endblock %}

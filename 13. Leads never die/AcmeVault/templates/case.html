@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}{{ case_id }} // CASE FILE{% endblock %}
+{% block content %}
+<div class="eyebrow">CASE FILE / {{ case_id }} / VERRAN HOMICIDE</div>
+<div class="case-header">
+    <div>
+        <h1 class="page-title">{{ case.subject }}</h1>
+        <p class="case-subtitle">{{ case.role }} // {{ case.summary }}</p>
+    </div>
+    <div class="clearance-badge">PRIMARY RECORD</div>
+</div>
+
+<div class="grid two case-facts">
+    <section class="panel">
+        <div class="panel-head">INCIDENT</div>
+        <div class="stat"><span>VICTIM</span><strong>{{ victim_name }}</strong></div>
+        <div class="stat"><span>LOCATION</span><strong>{{ case.location }}</strong></div>
+        <div class="stat"><span>TIME</span><strong>{{ case.time }}</strong></div>
+    </section>
+    <section class="panel">
+        <div class="panel-head">SUSPECT PROFILE</div>
+        <div class="fact-block"><span>MOTIVE</span><p>{{ case.motive }}</p></div>
+        <div class="fact-block"><span>ALIBI</span><p>{{ case.alibi }}</p></div>
+        <div class="fact-block"><span>EVIDENCE</span><p>{{ case.evidence }}</p></div>
+    </section>
+</div>
+
+<section class="panel">
+    <div class="panel-head">INTERVIEWS / EVIDENCE LOG</div>
+    {% for statement in case.statements %}<div class="statement">{{ statement }}</div>{% endfor %}
+    <div class="analyst-note"><strong>ANALYST NOTE</strong><br>{{ case.analyst_note }}</div>
+
+    {% if addendum_unlocked and case.addendum is defined %}
+        <div class="addendum-box unlocked">
+            <div class="addendum-head">
+                <span class="addendum-label">ARCHIVE ADDENDUM / RECOVERED</span>
+                <span class="addendum-state">ACCESS GRANTED</span>
+            </div>
+            <h2>{{ case.addendum.title }}</h2>
+            <p>{{ case.addendum.text }}</p>
+            <div class="fact-block compact"><span>ATTACHED EVIDENCE</span><p>{{ case.addendum.evidence }}</p></div>
+            {% if case.flag is defined %}
+                <div class="flag-box">
+                    <span>RECOVERED ARCHIVE MATERIAL</span>
+                    <code>{{ case.flag }}</code>
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
+
+    <div class="record-footer">PRIMARY RECORD // archive view reflects the material available to this session</div>
+</section>
+{% endblock %}

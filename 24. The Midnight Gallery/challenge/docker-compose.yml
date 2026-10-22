@@ -1,0 +1,14 @@
+# Two services. Only the gateway is published. The diagnostics node stays
+# on the private compose network, so it cannot reach the gateway's files.
+services:
+  gallery:
+    build: ./app
+    ports:
+      - "${PORT:-8080}:8080"
+    restart: unless-stopped
+    depends_on:
+      - diag
+
+  diag:
+    build: ./diag
+    restart: unless-stopped

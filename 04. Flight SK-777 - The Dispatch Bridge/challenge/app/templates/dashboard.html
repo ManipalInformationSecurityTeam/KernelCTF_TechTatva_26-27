@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- SkyNet Dispatch OS -->
+    <meta charset="UTF-8">
+    <title>SkyNet Dispatch OS // Live Telemetry</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="brand">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21.5 4c0 0-2-.5-3.5-2L14.5 5.5 6.3 3.7 4 6l6.6 2.8L7 12.4l-3.6-.9L2 13l4.2 3.8L10 21l1.5-1.4-.9-3.6 3.6-3.6 2.8 6.6 2.3-2.3z"></path></svg>
+            SKYNET
+        </div>
+        <div class="crew-profile">
+            <div class="avatar"></div>
+            <div style="font-size: 16px; font-weight: bold; margin-bottom: 8px;">Active Session</div>
+            <div class="status-badge {{ 'role-captain' if session.role == 'flight_captain' else 'role-crew' }}">
+                {{ session.role | replace('_', ' ') }}
+            </div>
+        </div>
+        <ul class="nav-menu">
+            <li class="active">❖ Dispatch Control</li>
+            <li>❖ Flight Radar <span style="font-size:10px; color:#64748b;">(Offline)</span></li>
+            <li>❖ Crew Roster <span style="font-size:10px; color:#64748b;">(Locked)</span></li>
+            <li>❖ Maintenance Logs</li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div style="color: #64748b; font-size: 12px; letter-spacing: 2px;">SECURE NODE: ALPHA-7 // WEBEX INTEGRATION V2.1</div>
+            <div class="clock" id="utc-clock">UTC 00:00:00</div>
+        </header>
+
+        <div class="dashboard-grid">
+            <div class="panel">
+                <div class="panel-header">
+                    <span>Flight Assignment Sync</span><span style="color: #10b981;">● ONLINE</span>
+                </div>
+                <div class="panel-body">
+                    <div class="data-row">
+                        <span style="color: #64748b;">Current Telemetry Focus:</span>
+                        <strong style="color: #0ea5e9; font-size: 18px;">{{ session.flight_id }}</strong>
+                    </div>
+                    
+                    <div style="background: #030712; padding: 20px; border-radius: 6px; border: 1px solid #1f2937; margin-top: 25px;">
+                        <form action="/api/v1/session/select-flight" method="POST" style="margin: 0;">
+                            <label>Target Briefing Initialization</label>
+                            <select name="flight_id">
+                                <option value="SK-102">SK-102 (Local Passenger)</option>
+                            </select>
+                            <input type="hidden" name="role" value="cabin_crew">
+                            <button type="submit" class="btn-primary">Execute Sync Protocol</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <span>Global NOTAMs & Telemetry</span><span style="color: #eab308;">▲ YIELD</span>
+                </div>
+                <div class="panel-body">
+                    <div class="terminal-text">
+                        <div class="log-entry"><span class="log-time">[SYS]</span> Updating METAR data feeds...</div>
+                        <div class="log-entry"><span class="log-time">[WX] </span> KJFK 231451Z 34015KT 10SM BKN040 04/M06 A2988</div>
+                        <div class="log-entry"><span class="log-time">[WX] </span> EGLL 231450Z 27010KT 9999 FEW030 08/04 Q1012</div>
+                        <div class="log-entry" style="color: #eab308;"><span class="log-time">[SEC]</span> WARNING: Heavy cargo manifest encryption keys updated.</div>
+                        <div class="log-entry"><span class="log-time">[SYS]</span> Webex bridge established on Port 8080.</div>
+                    </div>
+                </div>
+            </div>
+
+            {% if session.flight_id == 'SK-777' and session.role == 'flight_captain' %}
+            <div class="restricted-panel">
+                <h2>/// RESTRICTED CARGO CLEARANCE GRANTED ///</h2>
+                <p>Authentication accepted. Captain override engaged. Webex dispatch room unlocked.</p>
+                <a href="/api/v1/webex/briefing/SK-777">
+                    <button class="btn-danger">ACCESS CLASSIFIED BRIEFING</button>
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </main>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

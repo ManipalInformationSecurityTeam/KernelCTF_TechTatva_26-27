@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <title>{% block title %}ACME INVESTIGATIONS{% endblock %}</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="scanlines"></div>
+    <header class="topbar">
+        <a class="brand" href="{{ url_for('dashboard') }}"><span class="brand-mark">▮</span> ACME / INVESTIGATIONS</a>
+        {% if request.cookies.get("auth_token") %}
+        <nav>
+            <a href="{{ url_for('dashboard') }}">DASHBOARD</a>
+            <a href="{{ url_for('suspects') }}">CASE FILES</a>
+            <a href="{{ url_for('logout') }}">LOG OUT</a>
+        </nav>
+        {% endif %}
+    </header>
+    <main class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+    <footer>ACME INVESTIGATIONS // INTERNAL CASE MANAGEMENT SYSTEM // NODE 07</footer>
+</body>
+</html>

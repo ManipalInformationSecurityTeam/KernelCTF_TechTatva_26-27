@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}NOT FOUND // ACME{% endblock %}
+{% block content %}
+<section class="denied">
+    <div class="denied-code">404 / FILE NOT FOUND</div>
+    <h1>CASE NOT FOUND</h1>
+    <a class="button-link" href="{{ url_for('suspects') }}">← CASE DATABASE</a>
+</section>
+{% endblock %}

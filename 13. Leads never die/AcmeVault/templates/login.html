@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}AUTHENTICATION // ACME{% endblock %}
+{% block content %}
+<section class="login-shell">
+    <div class="terminal-label">SECURE ACCESS TERMINAL // NODE 07</div>
+    <h1><span>ACME</span><br><span>INVESTIGATION PORTAL</span></h1>
+    <p class="muted">Authorized personnel only.</p>
+    <form method="post" class="login-form">
+        <label for="investigator_id">INVESTIGATOR ID</label>
+        <input id="investigator_id" name="investigator_id" autocomplete="username" required>
+        <label for="password">PASSWORD</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+        <button type="submit">AUTHENTICATE <span>→</span></button>
+    </form>
+    <div class="system-status"><span class="dot"></span>AUTHENTICATION NODE ONLINE</div>
+</section>
+{% endblock %}

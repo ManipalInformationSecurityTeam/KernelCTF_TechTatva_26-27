@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astraeus | University Research Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="topbar">
+        <div class="logo">Astraeus Aerospace Research</div>
+        <div class="user-profile">
+            <span class="badge" id="account-tier">CIVILIAN</span>
+            <span id="user-name">Loading...</span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="grid-layout">
+            
+            <div class="main-column">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Catalogued Orbital Assets</h2>
+                        <button id="btn-refresh" class="btn btn-secondary">Refresh Network</button>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Asset ID</th>
+                                <th>Designation</th>
+                                <th>Classification</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="public-sat-list">
+                            <tr>
+                                <td>HELIOS-4</td>
+                                <td>Surveillance</td>
+                                <td><span class="badge-red">MILITARY</span></td>
+                                <td><button class="btn btn-small" onclick="viewData('HELIOS-4')">View Data</button></td>
+                            </tr>
+                            <tr>
+                                <td>NOAA-9</td>
+                                <td>Weather Relay</td>
+                                <td><span class="badge-blue">CIVILIAN</span></td>
+                                <td><button class="btn btn-small" onclick="viewData('NOAA-9')">View Data</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2>My Deployed Probes</h2>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Asset ID</th>
+                                <th>Designation</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="my-sat-list">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="side-column">
+                <div class="card">
+                    <h2>Launch Operations</h2>
+                    <p class="help-text">Deploy a standard weather CubeSat into Low Earth Orbit.</p>
+                    <input type="text" id="sat-name" placeholder="Designation (e.g. MANIPAL-1)">
+                    <button id="btn-launch" class="btn btn-primary w-full">Launch Probe</button>
+                </div>
+
+                <div class="card" id="data-panel">
+                    <h2>Data Downlink</h2>
+                    <div id="telemetry-output" class="data-box">
+                        Select an asset to view telemetry data.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

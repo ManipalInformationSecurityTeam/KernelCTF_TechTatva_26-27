@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+tests/
+organizer_answer_key.md
+ORGANIZER_NOTES.md
+question_bank.md
+evil.docx
+README_PARSER_FIX.md
+CHALLENGE_DESCRIPTION.md
+uploads/
+loadtest/
+
+.env
+.gitignore

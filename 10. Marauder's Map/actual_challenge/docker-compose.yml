@@ -1,0 +1,29 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: marauders-map-web
+    ports:
+      - "5000:5000"
+    networks:
+      - castle-net
+    depends_on:
+      - map-internal
+    restart: unless-stopped
+
+  map-internal:
+    build: ./map-internal
+    container_name: map-internal
+    # Deliberately NOT exposed to the host. Only reachable from inside
+    # the docker-internal network, by other containers, by service name
+    # ('map-internal') on port 5001.
+    expose:
+      - "5001"
+    networks:
+      - castle-net
+    restart: unless-stopped
+
+networks:
+  castle-net:
+    driver: bridge

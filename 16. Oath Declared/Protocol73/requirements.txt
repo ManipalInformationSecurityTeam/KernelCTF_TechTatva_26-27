@@ -1,0 +1,13 @@
+Flask>=3.1,<4.0
+python-docx>=1.2,<2.0
+Jinja2>=3.1,<4.0
+Werkzeug>=3.1,<4.0
+lxml>=5.0
+pytest>=8.0
+
+
+gunicorn>=23.0,<24.0
+waitress>=3.0,<4.0
+
+# Load testing only (organizer machine, not deployed with the app):
+# locust>=2.31,<3.0

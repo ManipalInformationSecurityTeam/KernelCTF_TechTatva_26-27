@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Protocol 73 | Restricted Intake</title>
+  <style>
+    :root { color-scheme: dark; --bg:#0b0c0e; --panel:#141619; --line:#303238; --text:#e8e8e8; --muted:#9b9da3; --red:#ef6268; --green:#a8d6b0; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; background:var(--bg); color:var(--text); font:15px/1.55 ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace; }
+    .wrap { width:min(920px, calc(100% - 32px)); margin:0 auto; padding:38px 0 56px; }
+    header { border-bottom:1px solid var(--line); padding-bottom:22px; margin-bottom:24px; }
+    .eyebrow { color:var(--red); font-size:12px; letter-spacing:.16em; }
+    h1 { margin:8px 0 4px; font-size:clamp(24px,4vw,34px); letter-spacing:.04em; }
+    .sub { color:var(--muted); margin:0; }
+    .panel { background:var(--panel); border:1px solid var(--line); padding:clamp(16px,3vw,26px); margin-top:16px; }
+    .meta { display:flex; justify-content:space-between; gap:12px; color:var(--muted); font-size:12px; flex-wrap:wrap; }
+    h2 { font-size:16px; margin:16px 0 8px; }
+    .condition { font-size:16px; margin:12px 0 22px; }
+    input[type=file] { display:block; width:100%; margin:16px 0; padding:12px; border:1px dashed #555861; background:#0e0f11; color:var(--muted); }
+    button { border:1px solid #a9444a; background:#301619; color:#fff; padding:12px 18px; font:inherit; cursor:pointer; }
+    button:hover { background:#482024; }
+    .notice { padding:12px 14px; border:1px solid var(--line); margin:16px 0; overflow-wrap:anywhere; }
+    .notice.fail { color:var(--red); border-color:#71343a; }
+    .notice.pass { color:var(--green); border-color:#355d3d; }
+    .logs { color:var(--muted); font-size:12px; overflow-wrap:anywhere; }
+    .logline { padding:5px 0; border-bottom:1px solid #23252a; }
+    .logline:last-child { border-bottom:0; }
+    .log-step { color:#c1bcad; font-weight:600; }
+    .preview { white-space:pre-wrap; overflow-wrap:anywhere; max-height:420px; overflow:auto; background:#0b0c0e; border:1px solid var(--line); padding:14px; }
+    .foot { color:var(--muted); font-size:11px; margin-top:24px; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div class="eyebrow">RESTRICTED SYSTEM // DP73</div>
+      <h1>PROTOCOL 73</h1>
+      <p class="sub">Department declaration intake and editorial clearance</p>
+    </header>
+
+    {% if notice %}
+      <div class="notice {{ notice.kind }}" role="status">{{ notice.message }}</div>
+    {% endif %}
+
+    {% if clearance %}
+      <section class="panel">
+        <div class="eyebrow">CLEARANCE STATUS</div>
+        <h2>CLEARANCE ISSUED</h2>
+        <p>The declaration has been processed and the clearance record is available.</p>
+        <p><a href="{{ url_for('flag_page') }}" style="color:var(--green)">Retrieve clearance record</a></p>
+      </section>
+    {% elif requirement %}
+      <section class="panel">
+        <div class="meta"><span>ACTIVE CONDITION {{ "%03d"|format(position) }} / {{ "%03d"|format(total_required) }}</span><span>STATUS: PENDING</span></div>
+        <h2>Current requirement</h2>
+        <p class="condition">{{ requirement.text }}</p>
+        <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+          <label for="document">Submit declaration (.docx)</label>
+          <input id="document" name="document" type="file" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required>
+          <button type="submit">SUBMIT FOR REVIEW</button>
+        </form>
+        {% if filename %}<p class="sub">Last submitted file: {{ filename }}</p>{% endif %}
+      </section>
+    {% endif %}
+
+    {% if logs %}
+      <section class="panel">
+        <div class="eyebrow">SYSTEM LOG</div>
+        <div class="logs" aria-label="System log">
+          {% for line in logs %}
+            <div class="logline">{{ line.before }}<span class="log-step">{{ line.step }}</span>{{ line.after }}</div>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+
+    {% if render_preview %}
+      <section class="panel">
+        <div class="eyebrow">GENERATED AUDIT COPY</div>
+        <pre class="preview">{{ render_preview }}</pre>
+      </section>
+    {% endif %}
+    <p class="foot">AUTHORIZED INTAKE ONLY · SESSION STATE IS RETAINED FOR THIS REVIEW</p>
+  </main>
+</body>
+</html>

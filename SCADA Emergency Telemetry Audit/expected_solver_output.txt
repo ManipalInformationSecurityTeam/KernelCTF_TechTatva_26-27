@@ -1,0 +1,13 @@
+[-] Loading audio file: release/scada_emergency_capture.wav
+    Sample rate: 48000 Hz | Channels: 2 | Duration: 75.0s
+[-] Step 1: Computing Mid/Side Side channel S(t) = (L - R) / 2...
+[-] Step 2: Applying bandpass filter (1100 Hz - 2000 Hz)...
+[-] Step 3: Computing instantaneous frequency via FM discriminator...
+[-] Step 4: Symbol clock grid: 37.33 Baud (1285.714 samples/symbol)...
+    Scanning burst window: 0.00s to 29.50s
+[+] Frame lock at sample 887680 (t = 18.493s | Barker score = 13.0)
+[+] CRC-8/SMBUS check: VALID (0x55)
+
+==================================================
+[+] FLAG: kernel{s0undw4v3s?_d1dn7_kn0w_7h3y_h4v3_h4nd5}
+==================================================

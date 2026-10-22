@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Order Matters — Case 18-42</title>
+  <link rel="stylesheet" href="/static/casefile.css?v=reset-visible-20261012-r2">
+  <script src="/static/casefile.js?v=reset-visible-20261012-r2" defer></script>
+</head>
+<body>
+
+  <main class="layout">
+    <section class="hero">
+      <div class="hero-copy">
+        <h1>Order Matters</h1>
+        <p class="hero-lede">Fifteen exhibits. Nine selections. The order matters.</p>
+        <p class="hero-body">Start with the intake record. After that, use the observation inside the box you just opened and the separately provided PCAP to choose the next box. You need nine boxes in the right order. One wrong new selection silently poisons the current run, so its fragments will not decrypt; the site will not tell you which pick was wrong. You cannot undo a single selection. Use Reset Challenge only if you want to discard the entire run and start again from zero. Reopening an already-selected box is safe and does not count as another selection.</p>
+      </div>
+    </section>
+
+    <div class="notice-strip" role="note" aria-label="Important selection warning">
+      <span class="notice-mark">!</span>
+      <p><strong>READ BEFORE CLICKING:</strong> A wrong new selection permanently poisons this run, and you will not be told which pick was wrong. There is no individual undo. <strong>RESET CHALLENGE</strong> discards every entry and starts a brand-new run from zero. Reopening an already-selected box is safe.</p>
+      <span class="notice-meta">15 EXHIBITS / 9 ENTRIES</span>
+    </div>
+
+    <section class="run-controls" aria-label="Challenge controls">
+      <div class="run-controls-copy">
+        <span class="run-controls-kicker">RUN CONTROL</span>
+        <strong>Need to start over?</strong>
+        <p>Reset clears every recorded exhibit and fragment and gives you a fresh run. It does not undo one selection.</p>
+      </div>
+      <button id="reset-challenge" class="reset-button" type="button" aria-label="Reset Challenge and start a fresh run"><span aria-hidden="true">↻</span> RESET CHALLENGE</button>
+    </section>
+
+    <div class="main-grid">
+      <section class="inventory-panel panel">
+        <div class="panel-heading">
+          <div><span class="section-kicker">01 / INVENTORY</span><h2>The evidence table</h2></div>
+          <div class="count-mark"><strong>15</strong><small>SEALED<br>FOLDERS</small></div>
+        </div>
+        <p class="panel-intro">Each exhibit contains a surviving observation and a block of encoded material. The box is only the cover; the packet trace is the context.</p>
+        <div class="folders" id="folders" aria-label="Evidence exhibits">
+          <button class="folder" data-box="A"><span class="folder-stamp">A</span><span class="folder-body"><strong>Intake ledger</strong><small>The first rupture</small></span><span class="folder-state">SEALED</span></button>
+          <button class="folder" data-box="B"><span class="folder-stamp">B</span><span class="folder-body"><strong>Resolver slip</strong><small>Lookup and return</small></span><span class="folder-state">SEALED</span></button>
+          <button class="folder" data-box="C"><span class="folder-stamp">C</span><span class="folder-body"><strong>Fragment register</strong><small>Ranges and offsets</small></span><span class="folder-state">SEALED</span></button>
+          <button class="folder" data-box="D"><span class="folder-stamp">D</span><span class="folder-body"><strong>Contact print</strong><small>Frame 27</small></span><span class="folder-state">SEALED</span></button>
+          <button class="folder" data-box="E"><span class="folder-stamp">E</span><span class="folder-body"><strong>Cold-store receipt</strong><small>Shelf 04</small></span><span class="folder-state">SEALED</span></button>
+          <button class="folder" data-box="F"><span class="folder-stamp">F</span><span class="folder-body"><strong>Transfer manifest</strong><small>Route 09</small></span><span class="folder-state">SEALED</span></button>
+          <button class="folder" data-box="G"><span class="folder-stamp">G</span><span class="folder-body"><strong>Switchboard carbon</strong><small>Trunk 12</small></span><span class="folder-state">SEALED</span></button>
+          <button class="folder" data-box="H"><span class="folder-stamp">H</span><span class="folder-body"><strong>Margin transcript</strong><small>Graphite hand</small></span><span class="folder-state">SEALED</span></button>
+          <button class="folder" data-box="I"><span class="folder-stamp">I</span><span class="folder-body"><strong>Visitor index</strong><small>Badge 008</small></span><span class="folder-state">SEALED</span></button>
+          <button class="folder" data-box="J"><span class="folder-stamp">J</span><span class="folder-body"><strong>Terminal folio</strong><small>Last acknowledgement</small></span><span class="folder-state">SEALED</span></button>
+          <button class="folder" data-box="K"><span class="folder-stamp">K</span><span class="folder-body"><strong>Damaged negative</strong><small>Violet residue</small></span><span class="folder-state">SEALED</span></button>
+          <button class="folder" data-box="L"><span class="folder-stamp">L</span><span class="folder-body"><strong>Courier claim</strong><small>Bay 06</small></span><span class="folder-state">SEALED</span></button>
+          <button class="folder" data-box="M"><span class="folder-stamp">M</span><span class="folder-body"><strong>Memory ledger</strong><small>Segment C</small></span><span class="folder-state">SEALED</span></button>
+          <button class="folder" data-box="N"><span class="folder-stamp">N</span><span class="folder-body"><strong>Service ticket</strong><small>Ticket 144</small></span><span class="folder-state">SEALED</span></button>
+          <button class="folder" data-box="O"><span class="folder-stamp">O</span><span class="folder-body"><strong>Mailroom tally</strong><small>Tray 07</small></span><span class="folder-state">SEALED</span></button>
+        </div>
+        <div class="inventory-bottom"><span class="key-dot"></span><span>FILED = opened / click again to review that same record</span><span class="inventory-divider"></span><span>UNFILED = awaiting selection</span></div>
+      </section>
+
+      <aside class="sidebar">
+        <section class="capture-panel panel">
+          <div class="section-kicker">02 / DIGITAL EVIDENCE</div>
+          <div class="capture-title"><span class="file-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 2.8h9l5 5V21H5z"/><path d="M14 2.8v5h5M8 12h8M8 15.5h8M8 19h5"/></svg></span><div><h2>Network capture</h2><small>PCAP PROVIDED SEPARATELY</small></div></div>
+          <p>Use the PCAP supplied with the challenge to correlate the records and recover the key and nonce. This site does not host the capture.</p>
+        </section>
+
+        <section class="bundle-panel panel">
+          <div class="section-kicker">03 / COLLECTED MATERIAL</div>
+          <h2>Fragment bundle</h2>
+          <p>Copy the recovered hex blocks in the order they were entered. Use the separate packet capture to recover the material needed for offline decryption.</p>
+          <div class="bundle-count"><strong id="entry-count">00</strong><span>/ 09<br>RECORDS</span><span class="bundle-progress"><i id="progress-fill"></i></span></div>
+          <button id="copy-bundle" class="quiet-button" disabled><span>▤</span> COPY ORDERED HEX</button>
+          <div id="copy-status" class="copy-status" aria-live="polite">NO MATERIAL COLLECTED</div>
+          <div class="bundle-note"><span>✳</span><p>Hexadecimal is only the visible encoding. The collected blocks are not a readable flag.</p></div>
+        </section>
+</aside>
+    </div>
+
+    <section class="ledger-panel panel">
+      <div class="panel-heading ledger-heading">
+        <div><span class="section-kicker">04 / CHAIN OF CUSTODY</span><h2>Recovered evidence ledger</h2></div>
+        <span class="ledger-status"><i></i><span id="ledger-status-text">AWAITING FIRST ENTRY</span></span>
+      </div>
+      <div id="ledger-list" class="ledger-list"><div class="ledger-empty"><span class="empty-glyph">∴</span><p>No exhibits have been entered into the ledger.</p><small>The first record will be preserved here.</small></div></div>
+      <div class="ledger-footer"><span>RECORDS ARE RETAINED IN THIS BROWSER SESSION</span><span>KEEP EVERY FRAGMENT IN ORDER</span></div>
+    </section>
+
+    <footer class="site-footer"><span class="footer-brand">AEB <i>·</i> ARCHIVES &amp; EVIDENCE BUREAU</span><span>CASE 18-42 <i>·</i> INTERNAL JOURNAL</span><span>THE ORDER IS PART OF THE RECORD.</span></footer>
+  </main>
+
+  <div id="evidence-modal" class="modal-backdrop" hidden>
+    <section class="evidence-sheet" role="dialog" aria-modal="true" aria-labelledby="modal-heading">
+      <div class="sheet-topline"><span>ARCHIVE RECORD / CHAIN OF CUSTODY</span><button id="modal-close" class="close-button" aria-label="Close exhibit">×</button></div>
+      <div class="sheet-title-row"><div class="large-stamp" id="modal-box-stamp">A</div><div><div class="section-kicker" id="modal-classification">EXHIBIT / INTAKE</div><h2 id="modal-heading">Intake ledger</h2><p id="modal-subtitle" class="sheet-subtitle">The first rupture</p></div></div>
+      <div class="rule-title"><span>FIELD OBSERVATION</span><span id="modal-ordinal">RECORD 01</span></div>
+      <p id="modal-observation" class="modal-observation">Recovering the exhibit…</p>
+      <div class="fragment-card"><div class="fragment-heading"><span class="section-kicker">RECOVERED MATERIAL / HEX</span><span class="fragment-seal">SEALED BLOCK</span></div><code id="modal-fragment" class="fragment-hex">00000000000000</code><div class="fragment-actions"><button id="copy-one" class="primary-button">COPY THIS BLOCK</button><span id="fragment-copy-status" aria-live="polite">HEX ENCODING</span></div></div>
+      <div class="sheet-bottom"><span>FILED UNDER CASE 18-42</span><span>RETAIN ACQUISITION ORDER</span></div>
+    </section>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
